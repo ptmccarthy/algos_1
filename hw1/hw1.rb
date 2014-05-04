@@ -19,9 +19,9 @@ class Array
     elsif right.empty?
       left
     elsif left.first < right.first
-      [left.first] + merge(left[1..left.length], right)
+      [left.first] + merge(left.drop(1), right)
     else
-      [right.first] + merge(left, right[1..right.length])
+      [right.first] + merge(left, right.drop(1))
     end
   end
 
