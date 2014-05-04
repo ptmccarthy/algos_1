@@ -23,3 +23,27 @@ describe Array do
   end
 
 end
+
+describe CountInversions do
+  let(:unsorted1) { [] }
+  let(:unsorted2) { [3] }
+  let(:unsorted3) { [9, 3, 4, 5, 1, 2, 8, 7, 6, 10] }
+  let(:unsorted4) { [4, 2, 6, 8] }
+  let(:subject) { CountInversions.new }
+
+  it 'returns the number of inversions in an empty array' do
+    subject.count_inversions(unsorted1).should == 0
+  end
+
+  it 'returns the number of inversions in an array of 1' do
+    subject.count_inversions(unsorted2).should == 0
+  end
+
+  it 'returns the correct number of inversions' do
+    subject.count_inversions(unsorted3).should == 17
+  end
+
+  it 'returns the correct number of inversions' do
+    subject.count_inversions(unsorted4).should == 1
+  end
+end
