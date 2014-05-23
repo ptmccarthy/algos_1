@@ -59,6 +59,7 @@ class CountInversions
   end
 end
 
+=begin
 a = []
 File.open('IntegerArray.txt').each do |line|
   a << line.to_i
@@ -67,3 +68,4 @@ end
 foo = CountInversions.new
 
 puts foo.count_inversions(a)
+=end
