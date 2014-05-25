@@ -14,8 +14,9 @@ class Quicksort
   private
 
   def qsort(array, left, right)
-    @comparisons += (right-left)
+    puts left.to_s + ', ' + right.to_s
     if right > left
+      @comparisons += (right-left)
       if @pivot_method == 'left'
         pIndex = left
       elsif @pivot_method == 'right'
@@ -64,11 +65,12 @@ class Quicksort
 
 end
 
+
+# junk below here
 a = []
 File.open('QuickSort.txt').each do |line|
   a << line.to_i
 end
 qs = Quicksort.new
 
-qs.quicksort!(a, 'median').to_s
-
+qs.quicksort!(b, 'left').to_s
