@@ -1,5 +1,5 @@
 class Quicksort
-  attr_accessor :comparisons
+  attr_reader :comparisons
 
   def quicksort!(array, pivot_selection)
     return array if array.length <= 1
@@ -14,7 +14,7 @@ class Quicksort
   private
 
   def qsort(array, left, right)
-    @comparisons += (right-left)-1
+    @comparisons += (right-left)
     if right > left
       if @pivot_method == 'left'
         pIndex = left
