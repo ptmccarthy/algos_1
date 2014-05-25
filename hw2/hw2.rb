@@ -1,24 +1,20 @@
 class Quicksort
   attr_accessor :comparisons
-  def count_comparisons(array)
-    @comparisons = 0
-    quicksort!(array)
-    @comparisons
-  end
 
   def quicksort!(array, pivot_selection)
     return array if array.length <= 1
-
     @pivot_method = pivot_selection
+    @comparisons = 0
 
     qsort(array, 0, array.length - 1)
+    puts 'comparisons: ' + @comparisons.to_s
     array
   end
 
   private
 
   def qsort(array, left, right)
-    #@comparisons += array.length - 1
+    @comparisons += (right-left)-1
     if right > left
       if @pivot_method == 'left'
         pIndex = left
@@ -32,25 +28,6 @@ class Quicksort
       qsort(array, left, newPivotIndex-1)
       qsort(array, newPivotIndex+1, right)
     end
-  end
-
-  def partition_left(array, left, right, pIndex)
-    if left < right
-      i = left + 1
-      j = left + 1
-      until j > right do
-        if array[j] < pivot
-          # swap i and j
-          array[i], array[j] = array[j], array[i]
-          i += 1
-        end
-        j += 1
-      end
-      # swap left and i-1
-      array[left], array[i-1] = array[i-1], array[left]
-    end
-    # return new index of pivot
-    i-1
   end
 
   def partition(array, left, right, pIndex)
@@ -91,10 +68,7 @@ a = []
 File.open('QuickSort.txt').each do |line|
   a << line.to_i
 end
-
 qs = Quicksort.new
 
-puts qs.quicksort!(a, 'right').to_s
+qs.quicksort!(a, 'median').to_s
 
-#comps = qs.count_comparisons(a)
-#puts 'comparisons: ' + comps.to_s
