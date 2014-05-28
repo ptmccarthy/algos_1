@@ -14,7 +14,6 @@ class Quicksort
   private
 
   def qsort(array, left, right)
-    puts left.to_s + ', ' + right.to_s
     if right > left
       @comparisons += (right-left)
       if @pivot_method == 'left'
@@ -50,13 +49,25 @@ class Quicksort
     i-1
   end
 
-  def median_of_three(a, left, right)
-    mid = ((right-left)/2).floor
+  def median_of_three(a, l, r)
+    n = (r-l)
+    if n <= 1
+      return l
+    end
 
-    vals = { left => a[left], mid => a[mid], right => a[right] }
+    left = a[l]
+    mid = a[(n/2)]
+    right = a[r]
 
-    vals = vals.sort_by { |name, value| value }
-    vals[1][0]
+    if right > left && left > mid || mid > left && left > right
+      median = l
+    elsif left > mid && mid > right || right > mid && mid > left
+      median = n/2
+    else
+      median = r
+    end
+
+    median
   end
 
   def swap(array, i, j)
@@ -73,4 +84,6 @@ File.open('QuickSort.txt').each do |line|
 end
 qs = Quicksort.new
 
-qs.quicksort!(b, 'left').to_s
+b = [4,3,2,1]
+
+qs.quicksort!(a, 'median').to_s
